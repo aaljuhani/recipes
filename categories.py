@@ -1,3 +1,37 @@
+'''
+Create these classes with internal data structures
+protein:
+    type of meat (red/white)
+    vegetarian (y/n)
+    seafood (y/n)
+    fancy (y/n)
+
+grain:
+    healthy (y/n)
+    cuisine (country)
+    fancy (y/n)
+    
+spice:
+    cuisine (country)
+    fancy (y/n)
+    
+vegetable:
+    each vegetable has a list of similar vegetables
+    cuisine
+
+fruit:
+    each vegetable has a list of similar vegetables
+    cuisine
+    
+flavor:
+    cuisine
+    fancy
+
+sauce:
+    cuisine
+    fancy
+'''
+    
 category =[
     ['protein' ,
      ['chicken' , 'whitemeat'],
@@ -34,7 +68,6 @@ category =[
 
     ['flavor',
      ['garlic'],
-     ['ginger'],
-     ['soy sauce']]
+     ['ginger']]
 
     ]
