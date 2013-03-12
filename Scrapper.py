@@ -63,7 +63,45 @@ def scrap_recipe (url):
     print cleanDescription
     print "\n"
 
+    Ingredient = Ingredient.split(',')
+    print Ingredient
+    print "\n"
 
+    Ingredients = []
+    temp = 0
+    for word in Ingredient:
+        if (temp == 0):
+            temp = 1
+        else:
+            Ingredients.append(word)
+            temp = 0
+    '''
+    Ingredients = []
+    lastInt = 0
+    currEntry = ""
+    temp = ""
+    for word in Ingredient:
+        currEntry = currEntry + " " + word
+        if (lastInt == 0):
+            try:
+                int(word)
+                lastInt = 1
+                if currEntry != "":
+                    Ingredients.append(currEntry)
+                currEntry = ""
+            except:
+                continue
+            
+        if (lastInt == 1):
+            currEntry = currEntry + " " + word
+            Ingredients.append(currEntry)
+            currEntry = ""
+            lastInt = 0
+            
+            
+'''      
+    print Ingredients
+    print "\n"
 
 
 
