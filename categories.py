@@ -1,3 +1,4 @@
+import random
 '''
 Create these classes with internal data structures
 protein:
@@ -71,3 +72,22 @@ category =[
      ['ginger']]
 
     ]
+
+class protein:
+    ingredients={'chicken':{'vegetarian':False,'color':'white','seafood':False,'fancy':False},
+                 'beef':{'vegetarian':False,'color':'red','seafood':False,'fancy':False},
+                 'pork':{'vegetarian':False,'color':'red','seafood':False,'fancy':False},
+                 'tofu':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
+                 'seitan':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
+                 'salmon':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},}
+    #instructions is a list of steps involving the ingredient
+    def getSimilarIngredient(self,ingredient,instructions):
+        replacement = random.choice(list(self.ingredients.keys()))
+        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions)):
+            replacement = random.choice(list(self.ingredients.keys()))
+        return replacement
+    
+    def compatible(self,x,y,instructions):
+        #do something to check if new ingredient is compatible with the instructions as well    
+        return self.ingredients[x]['vegetarian'] == self.ingredients[y]['vegetarian']
+        
