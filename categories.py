@@ -94,12 +94,22 @@ class protein:
 
 
 class grain:
-    ingredients={'chicken':{'vegetarian':False,'color':'white','seafood':False,'fancy':False},
-                 'beef':{'vegetarian':False,'color':'red','seafood':False,'fancy':False},
-                 'pork':{'vegetarian':False,'color':'red','seafood':False,'fancy':False},
-                 'tofu':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
-                 'seitan':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
-                 'salmon':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},}
+    ingredients={'Brown Rice':{'WholeGrain':True,'Glutin':False},
+                 'Oats':{'WholeGrain':True,'Glutin':False},
+                 'Popcorn':{'WholeGrain':True,'Glutin':False},
+                 'Oatmeal':{'WholeGrain':True,'Glutin':False},
+                 'Whole Wheat Pasta':{'WholeGrain':True,'Glutin':False},
+                 'Wild Rice':{'WholeGrain':True,'Glutin':False},
+                 'Bulgur':{'WholeGrain':True,'Glutin':True},
+
+                 'Cornbread':{'WholeGrain':False,'Glutin':False},
+                 'Couscous':{'WholeGrain':False,'Glutin':False},
+                 'Crackers':{'WholeGrain':False,'Glutin':False},
+                 'Noodles':{'WholeGrain':False,'Glutin':False},
+                 'Spaghetti':{'WholeGrain':False,'Glutin':False},
+                 'Macaroni':{'WholeGrain':False,'Glutin':False},
+                 'White Bread':{'WholeGrain':False,'Glutin':False},
+                 'White Rice':{'WholeGrain':False,'Glutin':False},}
 
     #instructions is a list of steps involving the ingredient
     def getSimilarIngredient(self,ingredient,instructions):
@@ -110,7 +120,7 @@ class grain:
     
     def compatible(self,x,y,instructions):
         #do something to check if new ingredient is compatible with the instructions as well    
-        return self.ingredients[x]['vegetarian'] == self.ingredients[y]['vegetarian']
+        return self.ingredients[x]['WholeGrain'] == self.ingredients[y]['WholeGrain']
         
 
 
