@@ -3,6 +3,7 @@ import re
 from bs4 import BeautifulSoup
 
 
+
 def scrap_recipe (url):
     #page to scrap
     recipe_URL = url
@@ -103,7 +104,8 @@ def scrap_recipe (url):
             lastInt = 0
             
             
-'''      
+'''
+    return Ingredients
     print Ingredients
     print "\n"
 

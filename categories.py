@@ -81,13 +81,26 @@ class protein:
                  'seitan':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
                  'salmon':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},}
     #instructions is a list of steps involving the ingredient
-    def getSimilarIngredient(self,ingredient,instructions):
+    def getSimilarIngredient(self,ingredient,instructions, used):
+        if self.compatible(ingredient,ingredient,instructions, used):
+            return ingredient
         replacement = random.choice(list(self.ingredients.keys()))
-        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions)):
+        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
             replacement = random.choice(list(self.ingredients.keys()))
         return replacement
     
-    def compatible(self,x,y,instructions):
+    def compatible(self,x,y,instructions, used):
+        if x in used:
+            return False
+        if instructions == 'vegetarian':
+            return self.ingredients[x]['vegetarian']
+        elif instructions == 'seafood':
+            return self.ingredients[x]['seafood']
+        elif instructions == 'fancy':
+            return self.ingredients[x]['fancy']
+        else:
+            return True               
+            
         #do something to check if new ingredient is compatible with the instructions as well    
         return self.ingredients[x]['vegetarian'] == self.ingredients[y]['vegetarian']
         
@@ -112,14 +125,36 @@ class grain:
                  'White Rice':{'healthy':False,'cuisine':'America','fancy':False},}
 
     #instructions is a list of steps involving the ingredient
-    def getSimilarIngredient(self,ingredient,instructions):
+    def getSimilarIngredient(self,ingredient,instructions, used):
+        if self.compatible(ingredient,ingredient,instructions, used):
+            return ingredient
         replacement = random.choice(list(self.ingredients.keys()))
-        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions)):
+        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
             replacement = random.choice(list(self.ingredients.keys()))
         return replacement
     
-    def compatible(self,x,y,instructions):
-        #do something to check if new ingredient is compatible with the instructions as well    
+    def compatible(self,x,y,instructions, used):
+        #do something to check if new ingredient is compatible with the instructions as well
+        if x in used:
+            return False
+        if instructions == 'healthy':
+            return self.ingredients[x]['healthy']
+        elif instructions == 'fancy':
+            return self.ingredients[x]['fancy']
+        elif instructions == 'asian':
+            return self.ingredients[x]['cuisine'] == 'Asia'
+        elif instructions == 'italian':
+            return self.ingredients[x]['cuisine'] == 'Italy'
+        elif instructions == 'greek':
+            return self.ingredients[x]['cuisine'] == 'Greek'
+        elif instructions == 'american':
+            return self.ingredients[x]['cuisine'] == 'America'
+        elif instructions == 'indian':
+            return self.ingredients[x]['cuisine'] == 'India'
+        elif instructions == 'english':
+            return self.ingredients[x]['cuisine'] == 'England'
+        else:
+            return True   
         return self.ingredients[x]['healthy'] == self.ingredients[y]['healthy']
         
 
@@ -127,6 +162,7 @@ class grain:
 
 class spices:
     ingredients={'Cumin Seeds':{'cuisine':'India','fancy':False},
+                 'cumin':{'cuisine':'India','fancy':False},
                  'Turmeric':{'cuisine':'India','fancy':False},
                  'Coriander Seeds':{'cuisine':'India','fancy':False},
                  'Fennel Seeds':{'cuisine':'India','fancy':False},
@@ -152,7 +188,7 @@ class spices:
                  'Turmeric':{'cuisine':'Asia','fancy':False},
                   
                  
-                'Saffron':{'cuisine':'Iran','fancy':False},
+                'Saffron':{'cuisine':'Iran','fancy':False}, #doesnt originate from iran, but aside form that it bringsup a point that an ingredient can be common in multiple cuisines 
                  
 
                 
@@ -161,14 +197,36 @@ class spices:
                  'pepper':{'cuisine':'worldwide','fancy':False},}
 
     #instructions is a list of steps involving the ingredient
-    def getSimilarIngredient(self,ingredient,instructions):
+    def getSimilarIngredient(self,ingredient,instructions, used):
+        if self.compatible(ingredient,ingredient,instructions, used):
+            return ingredient
         replacement = random.choice(list(self.ingredients.keys()))
-        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions)):
+        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
             replacement = random.choice(list(self.ingredients.keys()))
         return replacement
     
-    def compatible(self,x,y,instructions):
-        #do something to check if new ingredient is compatible with the instructions as well    
+    def compatible(self,x,y,instructions, used):
+        #do something to check if new ingredient is compatible with the instructions as well
+        if x in used:
+            return False
+        if instructions == 'fancy':
+            return self.ingredients[x]['fancy']
+        elif instructions == 'asian':
+            return self.ingredients[x]['cuisine'] == 'Asia'
+        elif instructions == 'italian':
+            return self.ingredients[x]['cuisine'] == 'Italy'
+        elif instructions == 'greek':
+            return self.ingredients[x]['cuisine'] == 'Greek'
+        elif instructions == 'american':
+            return self.ingredients[x]['cuisine'] == 'America'
+        elif instructions == 'indian':
+            return self.ingredients[x]['cuisine'] == 'India'
+        elif instructions == 'english':
+            return self.ingredients[x]['cuisine'] == 'England'
+        elif instructions == 'iranian':
+            return self.ingredients[x]['cuisine'] == 'Iran'
+        else:
+            return True   
         return self.ingredients[x]['cuisine'] == self.ingredients[y]['cuisine']
         
 
@@ -185,18 +243,40 @@ class sauce:
                  
                 'barbeque sauce':{'cuisine':'America','fancy':False},
                 
-                 'tomato sauce':{'cuisine':'worldwide','fancy':False},
+                 'tomato sauce':{'cuisine':'worldwide','fancy':False}, #need to find a way to handle this
                 }
 
     #instructions is a list of steps involving the ingredient
-    def getSimilarIngredient(self,ingredient,instructions):
+    def getSimilarIngredient(self,ingredient,instructions, used):
+        if self.compatible(ingredient,ingredient,instructions, used):
+            return ingredient
         replacement = random.choice(list(self.ingredients.keys()))
-        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions)):
+        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
             replacement = random.choice(list(self.ingredients.keys()))
         return replacement
     
-    def compatible(self,x,y,instructions):
-        #do something to check if new ingredient is compatible with the instructions as well    
+    def compatible(self,x,y,instructions, used):
+        #do something to check if new ingredient is compatible with the instructions as well
+        if x in used:
+            return False
+        if instructions == 'fancy':
+            return self.ingredients[x]['fancy']
+        elif instructions == 'asian':
+            return self.ingredients[x]['cuisine'] == 'Asia'
+        elif instructions == 'italian':
+            return self.ingredients[x]['cuisine'] == 'Italy'
+        elif instructions == 'greek':
+            return self.ingredients[x]['cuisine'] == 'Greek'
+        elif instructions == 'american':
+            return self.ingredients[x]['cuisine'] == 'America'
+        elif instructions == 'indian':
+            return self.ingredients[x]['cuisine'] == 'India'
+        elif instructions == 'english':
+            return self.ingredients[x]['cuisine'] == 'England'
+        elif instructions == 'iranian':
+            return self.ingredients[x]['cuisine'] == 'Iran'
+        else:
+            return True 
         return self.ingredients[x]['cuisine'] == self.ingredients[y]['cuisine']
         
 
