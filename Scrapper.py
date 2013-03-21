@@ -63,18 +63,22 @@ def scrap_recipe (url):
     print cleanDescription
     print "\n"
 
-    Ingredient = Ingredient.split(',')
-    print Ingredient
-    print "\n"
+    Ingredient = Ingredient.split(',')    
 
     Ingredients = []
-    temp = 0
+    temp = []
     for word in Ingredient:
-        if (temp == 0):
-            temp = 1
+        if re.match(r'[\D-]*$', word):
+            temp.append(word)
+            Ingredients.append(temp)
+            temp = []
         else:
-            Ingredients.append(word)
-            temp = 0
+            temp.append(word)
+
+    for pair in Ingredients:
+        if len(pair) < 2:
+            Ingredients.remove(pair)
+            
     '''
     Ingredients = []
     lastInt = 0
