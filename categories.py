@@ -42,7 +42,9 @@ category =[
         ['tofu'],
         ['lamb'],
         ['seitan'],
-        ['tempeh']],
+        ['tempeh'],
+     ['tilapia'],
+     ['shrimp']],
 
     ['grain' ,
         ['Brown Rice'],
@@ -134,7 +136,9 @@ class protein:
                  'seitan':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
                  'tempeh':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
                  'lamb':{'vegetarian':False,'color':'red','seafood':False,'fancy':False},
-                 'salmon':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},}
+                 'salmon':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},
+                 'tilapia':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},
+                 'shrimp':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},}
     #instructions is a list of steps involving the ingredient
     def getSimilarIngredient(self,ingredient,instructions, used):
         if self.compatible(ingredient,ingredient,instructions, used):
