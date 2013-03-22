@@ -84,6 +84,7 @@ category =[
         ['turmeric'],
         ['saffron'],
         ['ground garlic'],
+        ['rosemary'],
         ['ground ginger']],
 
      ['vegetable',
@@ -93,9 +94,11 @@ category =[
         ['edamame'],
   
         ['cabbage'], # in case you want to switch to bok choy (asian)
-        ['pepper'],
+        ['red pepper'],
+        ['green pepper'],
         ['spinach'],
         ['red bell pepper'],
+        ['green bell pepper'],
         ['yam'],
         ['beans'],
         ['radish'],
@@ -107,7 +110,7 @@ category =[
     ['fruit',
         ['apple'],
         ['pomegranate'],
-        ['raisin'],
+        ['raisins'],
         ['asian pear'],     
      ],
 
@@ -117,6 +120,7 @@ category =[
         ['hoisin sauce'],
         ['soy sauce'],
         ['barbeque sauce'],
+        ['ketchup'],
         ['tomato sauce']],
     ]
 
@@ -198,31 +202,31 @@ class grain:
 
 
 class spices:
-    ingredients={'cumin seeds':{'cuisine':['indian'],'fancy':False},
-                 'cumin':{'cuisine':['indian'],'fancy':False},
-                 'turmeric':{'cuisine':['indian'],'fancy':False},
-                 'soriander seeds':{'cuisine':['indian'],'fancy':False},
-                 'fennel seeds':{'cuisine':['indian'],'fancy':False},
+    ingredients={'cumin seeds':{'cuisine':['indian', 'mexican'],'fancy':False},
+                 'cumin':{'cuisine':['indian', 'mexican'],'fancy':False},
+                 'turmeric':{'cuisine':['asian','indian'],'fancy':False},
+                 'fennel seeds':{'cuisine':[],'fancy':False},
                  'fenugreek seeds':{'cuisine':['indian'],'fancy':False},
-                 'curry':{'cuisine':['indian'],'fancy':False},
-                 'ginger':{'cuisine':['indian'],'fancy':False},
+                 'curry':{'cuisine':['indian','asian'],'fancy':False},
+                 'ginger':{'cuisine':['indian','asian'],'fancy':False},
                  
 
                  'chamomile':{'cuisine':['italian'],'fancy':False},
                  'lemon pepper':{'cuisine':['italian'],'fancy':False},
                  'oregano':{'cuisine':['italian'],'fancy':False},
                  'sun-dried tomatoes':{'cuisine':['italian'],'fancy':False},
-                 'bay leaves':{'cuisine':['italian'],'fancy':False},
+                 'bay leaves':{'cuisine':['italian','american'],'fancy':False},
                  'basil leaves':{'cuisine':['italian'],'fancy':False},
                  'anise':{'cuisine':['italian'],'fancy':False},
-                 'coriander':{'cuisine':['italian'],'fancy':False},
-                 'cloves':{'cuisine':['italian'],'fancy':False},
+                 'coriander':{'cuisine':['mexican','asian','indian'],'fancy':False},
+                 'cloves':{'cuisine':['italian','indian','american'],'fancy':False},
 
-                 'Cinnamon':{'cuisine':['asian'],'fancy':False},
+                 'Cinnamon':{'cuisine':['asian','american'],'fancy':False},
                  'Thai Basil':{'cuisine':['asian'],'fancy':False},
                  'Kaffir Lime Leaves':{'cuisine':['asian'],'fancy':False},
                  'Nigella':{'cuisine':['asian'],'fancy':False},
-                 'Turmeric':{'cuisine':['asian'],'fancy':False},
+                 'Turmeric':{'cuisine':['asian', 'indian'],'fancy':False},
+                 'rosemary':{'cuisine':['italian', 'american'], 'fancy':False},
                   
                  
                 'Saffron':{'cuisine':['iranian'],'fancy':False}, #doesnt originate from iran, but aside form that it bringsup a point that an ingredient can be common in multiple cuisines 
@@ -260,9 +264,11 @@ class vegetables:
         'cabbage':{'similarVeg':['bok choy'], 'cuisine':[], 'fancy':False},
         'green onions':{'similarVeg':[], 'cuisine':[], 'fancy':False},
         'carrot':{'similarVeg':[], 'cuisine':[], 'fancy':False},
-        'pepper':{'similarVeg':['red bell pepper', 'okra'], 'cuisine':[], 'fancy':False},
+        'red pepper':{'similarVeg':['red bell pepper', 'okra'], 'cuisine':[], 'fancy':False},
+        'green pepper':{'similarVeg':['green bell pepper', 'okra'], 'cuisine':[], 'fancy':False},
         'spinach':{'similarVeg':['bok choy'], 'cuisine':[], 'fancy':False},
-        'red bell pepper':{'similarVeg':['pepper', 'okra'], 'cuisine':[], 'fancy':False},
+        'red bell pepper':{'similarVeg':['red pepper', 'okra'], 'cuisine':[], 'fancy':False},
+        'green bell pepper':{'similarVeg':['green pepper', 'okra'], 'cuisine':[], 'fancy':False},
         'yam':{'similarVeg':['lotus root', 'potato'], 'cuisine':[], 'fancy':False},
         'beans':{'similarVeg':['edamame'], 'cuisine':[], 'fancy':False},
         'radish':{'similarVeg':['lotus root'], 'cuisine':[], 'fancy':False},
@@ -272,15 +278,19 @@ class vegetables:
         
         'edamame': {'similarVeg':['beans'], 'cuisine':['asian'], 'fancy':False},
         'bok choy':{'similarVeg':['cabbage', 'spinach'], 'cuisine':['asian'], 'fancy':False},
-        'okra':{'similarVeg':['pepper', 'eggplant', 'mushroom', 'red bell pepper'], 'cuisine':['indian', 'american'], 'fancy':False},
+        'okra':{'similarVeg':['red pepper', 'eggplant', 'mushroom', 'red bell pepper'], 'cuisine':['indian', 'american'], 'fancy':False},
         'lotus root':{'similarVeg':['potato', 'eggplant', 'radish', 'yam'], 'cuisine':['asian'], 'fancy':False},
         }
 
     def getSimilarIngredient(self,ingredient,instructions, used):
+        count = 0
         if self.compatible(ingredient,ingredient,instructions, used):
             return ingredient
         replacement = random.choice(self.ingredients[ingredient]['similarVeg'])
         while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
+            if count > 30:
+               return ingredient
+            count = count + 1;
             replacement = random.choice(self.ingredients[ingredient]['similarVeg'])
         return replacement
     
@@ -299,17 +309,21 @@ class vegetables:
 
 class fruits:
     ingredients = {
-        'apple':{'similar':['asian pear'], 'cuisine':[], 'fancy':False},
-        'pomegranate':{'similar':['raisin'], 'cuisine':['iranian', 'greek'], 'fancy':False},
-        'raisin':{'similar':['pomegranate'], 'cuisine':[], 'fancy':False},
+        'apple':{'similar':['asian pear'], 'cuisine':['asian'], 'fancy':False},
+        'pomegranate':{'similar':['raisins'], 'cuisine':['iranian', 'greek'], 'fancy':False},
+        'raisins':{'similar':['pomegranate', 'asian pear'], 'cuisine':[], 'fancy':False},
         'asian pear':{'similar':['apple'], 'cuisine':['asian'], 'fancy':False},
         }
 
     def getSimilarIngredient(self,ingredient,instructions, used):
+        count = 0
         if self.compatible(ingredient,ingredient,instructions, used):
             return ingredient
         replacement = random.choice(self.ingredients[ingredient]['similar'])
         while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
+            if count > 30:
+               return ingredient
+            count = count + 1;
             replacement = random.choice(self.ingredients[ingredient]['similar'])
         return replacement
     
@@ -338,16 +352,21 @@ class sauce:
                  'soy sauce':{'cuisine':['asian'],'fancy':False},
                  
                 'barbeque sauce':{'cuisine':['american'],'fancy':False},
+                 'ketchup':{'cuisine':['american','italian'],'fancy':False},
                 
                  'tomato sauce':{'cuisine':['italian','american'],'fancy':False}, #need to find a way to handle this
                 }
 
     #instructions is a list of steps involving the ingredient
     def getSimilarIngredient(self,ingredient,instructions, used):
+        count = 0
         if self.compatible(ingredient,ingredient,instructions, used):
             return ingredient
         replacement = random.choice(list(self.ingredients.keys()))
         while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
+            if count > 30:
+               return ingredient
+            count = count + 1;
             replacement = random.choice(list(self.ingredients.keys()))
         return replacement
     

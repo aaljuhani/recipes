@@ -5,11 +5,15 @@ p = protein()
 g = grain()
 sp = spices()
 sa = sauce()
-#v = vegetable()
-#fr = fruit()
+v = vegetables()
+fr = fruits()
 #fl = flavor()
 
 def findIngredient (str):
+    str = str.replace('finely', '')
+    str = str.replace('chopped', '')
+    str = str.replace('diced', '')
+    str = str.replace('dried','')
     for cat in category:
         for i in cat:
             if str.replace(' ','') == i[0].replace(' ',''):
@@ -36,24 +40,27 @@ def generateRecipe (url, instruction):
         if info:
             if info[0] == 'protein':
                 new = p.getSimilarIngredient(info[1], instruction, used)
-                translation.append([' meat', new])
+                translation.append([' meat ', new + ' '])
             elif info[0] == 'grain':
                 new = g.getSimilarIngredient(info[1], instruction, used)
             elif info[0] == 'spice':
                 new = sp.getSimilarIngredient(info[1], instruction, used)
             elif info[0] == 'sauce':
                 new = sa.getSimilarIngredient(info[1], instruction, used)
-            else:
-                new = info[1]
-            '''    
-            elif info[0] == 'vegetable':
-                new = v.getSimilarIngredient(info[1], instruction, used)
             elif info[0] == 'fruit':
                 new = fr.getSimilarIngredient(info[1], instruction, used)
+            elif info[0] == 'vegetable':
+                new = v.getSimilarIngredient(info[1], instruction, used)
+            else:
+                new = info[1]
+                
+
+            
+            '''
             elif info[0] == 'flavor':
                 new = fl.getSimilarIngredient(info[1], instruction, used)
             '''
-            translation.append([item[1], new])
+            translation.append([item[1].replace('dried ', ''), new])
             temp.append(new)
             used.append(new)
         else:
@@ -75,6 +82,7 @@ def generateRecipe (url, instruction):
     print newIngredients
     print '\n'
     print newdir
+    print translation
         
         
         
