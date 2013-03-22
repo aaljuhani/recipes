@@ -83,7 +83,7 @@ category =[
         ['nigella'],
         ['turmeric'],
         ['saffron'],
-        ['ground garlic']
+        ['ground garlic'],
         ['ground ginger']],
 
     ['vegetable',
