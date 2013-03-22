@@ -10,6 +10,10 @@ sa = sauce()
 #fl = flavor()
 
 def findIngredient (str):
+    for cat in category:
+        for i in cat:
+            if str.replace(' ','') == i[0].replace(' ',''):
+                return [cat[0], i[0]]
     temp = str.split(' ')
     for word in temp:
         for cat in category:

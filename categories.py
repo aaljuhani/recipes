@@ -198,12 +198,16 @@ class spices:
 
     #instructions is a list of steps involving the ingredient
     def getSimilarIngredient(self,ingredient,instructions, used):
-        if self.compatible(ingredient,ingredient,instructions, used):
-            return ingredient
-        replacement = random.choice(list(self.ingredients.keys()))
-        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
-            replacement = random.choice(list(self.ingredients.keys()))
-        return replacement
+       count = 0
+       if self.compatible(ingredient,ingredient,instructions, used):
+           return ingredient
+       replacement = random.choice(list(self.ingredients.keys()))
+       while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
+           if count > 30:
+               return ingredient
+           count = count + 1;
+           replacement = random.choice(list(self.ingredients.keys()))
+       return replacement
     
     def compatible(self,x,y,instructions, used):
         #do something to check if new ingredient is compatible with the instructions as well
