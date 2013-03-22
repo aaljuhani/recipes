@@ -104,10 +104,13 @@ category =[
         ['mushroom'],
      ],
 
-
     ['fruit',
         ['apple'],
-        ['pinapple']],
+        ['pomegranate'],
+        ['raisin'],
+        ['asian pear'],     
+     ],
+
     ['sauce',
         ['curry sauce'],
         ['balsamic vinegar'],
@@ -260,17 +263,17 @@ class vegetables:
         'pepper':{'similarVeg':['red bell pepper', 'okra'], 'cuisine':[], 'fancy':False},
         'spinach':{'similarVeg':['bok choy'], 'cuisine':[], 'fancy':False},
         'red bell pepper':{'similarVeg':['pepper', 'okra'], 'cuisine':[], 'fancy':False},
-        'yam':{'similarVeg':['lotus root', 'potato'], 'cuisine':[]},
-        'beans':{'similarVeg':['edamame'], 'cuisine':[]},
-        'radish':{'similarVeg':['lotus root'], 'cuisine':[]},
-        'potato':{'similarVeg':['yam', 'lotus root'], 'cuisine':[]},
-        'eggplant':{'similarVeg':['mushroom', 'okra', 'lotus root'], 'cuisine':[]},
-        'mushroom':{'similarVeg':['okra', 'eggplant', 'lotus root'], 'cuisine':[]},
+        'yam':{'similarVeg':['lotus root', 'potato'], 'cuisine':[], 'fancy':False},
+        'beans':{'similarVeg':['edamame'], 'cuisine':[], 'fancy':False},
+        'radish':{'similarVeg':['lotus root'], 'cuisine':[], 'fancy':False},
+        'potato':{'similarVeg':['yam', 'lotus root'], 'cuisine':[], 'fancy':False},
+        'eggplant':{'similarVeg':['mushroom', 'okra', 'lotus root'], 'cuisine':[], 'fancy':False},
+        'mushroom':{'similarVeg':['okra', 'eggplant', 'lotus root'], 'cuisine':[], 'fancy':False},
         
-        'edamame': {'similarVeg':['beans'], 'cuisine':['asian']},
-        'bok choy':{'similarVeg':['cabbage', 'spinach'], 'cuisine':['asian']},
-        'okra':{'similarVeg':['pepper', 'eggplant', 'mushroom', 'red bell pepper'], 'cuisine':['indian', 'american']},
-        'lotus root':{'similarVeg':['potato', 'eggplant', 'radish', 'yam'], 'cuisine':['asian']},
+        'edamame': {'similarVeg':['beans'], 'cuisine':['asian'], 'fancy':False},
+        'bok choy':{'similarVeg':['cabbage', 'spinach'], 'cuisine':['asian'], 'fancy':False},
+        'okra':{'similarVeg':['pepper', 'eggplant', 'mushroom', 'red bell pepper'], 'cuisine':['indian', 'american'], 'fancy':False},
+        'lotus root':{'similarVeg':['potato', 'eggplant', 'radish', 'yam'], 'cuisine':['asian'], 'fancy':False},
         }
 
     def getSimilarIngredient(self,ingredient,instructions, used):
@@ -294,12 +297,33 @@ class vegetables:
         return self.ingredients[x]['cuisine'] == self.ingredients[y]['cuisine']
 
 
+class fruits:
+    ingredients = {
+        'apple':{'similar':['asian pear'], 'cuisine':[], 'fancy':False},
+        'pomegranate':{'similar':['raisin'], 'cuisine':['iranian', 'greek'], 'fancy':False},
+        'raisin':{'similar':['pomegranate'], 'cuisine':[], 'fancy':False},
+        'asian pear':{'similar':['apple'], 'cuisine':['asian'], 'fancy':False},
+        }
 
-
-
-
-
-
+    def getSimilarIngredient(self,ingredient,instructions, used):
+        if self.compatible(ingredient,ingredient,instructions, used):
+            return ingredient
+        replacement = random.choice(self.ingredients[ingredient]['similar'])
+        while not(replacement != ingredient and self.compatible(replacement,ingredient,instructions, used)):
+            replacement = random.choice(self.ingredients[ingredient]['similar'])
+        return replacement
+    
+    def compatible(self, x, y, instructions, used):
+        #do something to check if new ingredient is compatible with the instructions as well
+        if x in used:
+            return False
+        if instructions == 'fancy':
+            return self.ingredients[x]['fancy']
+        elif instructions in self.ingredients[x]['cuisine']:
+            return True
+        else:
+            return False 
+        return self.ingredients[x]['cuisine'] == self.ingredients[y]['cuisine']
 
 
 
