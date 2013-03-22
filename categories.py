@@ -40,6 +40,8 @@ category =[
         ['pork'],
         ['turkey'],
         ['tofu'],
+        ['lamb'],
+        ['seitan'],
         ['tempeh']],
 
     ['grain' ,
@@ -130,6 +132,8 @@ class protein:
                  'pork':{'vegetarian':False,'color':'red','seafood':False,'fancy':False},
                  'tofu':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
                  'seitan':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
+                 'tempeh':{'vegetarian':True,'color':'white','seafood':False,'fancy':False},
+                 'lamb':{'vegetarian':False,'color':'red','seafood':False,'fancy':False},
                  'salmon':{'vegetarian':False,'color':'white','seafood':True,'fancy':False},}
     #instructions is a list of steps involving the ingredient
     def getSimilarIngredient(self,ingredient,instructions, used):

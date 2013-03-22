@@ -69,7 +69,7 @@ def scrap_recipe (url):
     for item in cleanDescription:
         directions.append(item.replace('::',''))
     
-    print directions
+    #print directions
     
     Ingredient = Ingredient.split(',')    
 

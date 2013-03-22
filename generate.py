@@ -1,6 +1,8 @@
 from categories import *
 from Scrapper import *
 
+#generateRecipe('http://allrecipes.com/Recipe/Juggernauts-Meatloaf/Detail.aspx','asian')
+
 p = protein()
 g = grain()
 sp = spices()
@@ -25,6 +27,24 @@ def findIngredient (str):
                 if word == i[0]:
                     return [cat[0], word]
     return False
+'''
+def findIngredient (str):
+    str = str.replace('finely', '')
+    str = str.replace('chopped', '')
+    str = str.replace('diced', '')
+    str = str.replace('dried','')
+    for cat in category:
+        for i in cat:
+            if str.replace(' ','') == i[0].replace(' ',''):
+                return [cat[0], i[0]]
+    temp = str.split(' ')
+    for word in temp:
+        for cat in category:
+            for i in cat:
+                if word == i[0]:
+                    return [cat[0], word]
+    return False
+'''
 
 def generateRecipe (url, instruction):
     recipe = scrap_recipe(url)
@@ -41,6 +61,11 @@ def generateRecipe (url, instruction):
             if info[0] == 'protein':
                 new = p.getSimilarIngredient(info[1], instruction, used)
                 translation.append([' meat ', new + ' '])
+                
+                if item[1].find('ground') != -1:
+                    translation.append([item[1].replace('ground ', ''), new])
+                    new = 'ground ' + new
+                
             elif info[0] == 'grain':
                 new = g.getSimilarIngredient(info[1], instruction, used)
             elif info[0] == 'spice':
@@ -60,11 +85,17 @@ def generateRecipe (url, instruction):
             elif info[0] == 'flavor':
                 new = fl.getSimilarIngredient(info[1], instruction, used)
             '''
+            if instruction == 'vegetarian':
+                new = new.replace('egg', 'egg substitute')
             translation.append([item[1].replace('dried ', ''), new])
             temp.append(new)
             used.append(new)
         else:
-            temp.append(item[1])
+            if instruction == 'vegetarian':
+                temp.append(item[1].replace('egg', 'egg substitute'))
+                translation.append([item[1], item[1].replace('egg', 'egg substitute')])
+            else:
+                temp.append(item[1])
         newIngredients.append(temp)
         temp = []
     directions = recipe[1]
@@ -75,14 +106,29 @@ def generateRecipe (url, instruction):
         for item in translation:
             temp = temp.replace(item[0], ' ' + item[1])
         newdir.append(temp)
-    print 'OLD'
-    print ingredients
-    print '\n'
-    print 'NEW'
-    print newIngredients
-    print '\n'
-    print newdir
-    print translation
+    
+    print ('\n'),
+    print ('NEW INGREDIENTS'),
+    print ('\n'),
+    for item in newIngredients:
+        print ('\n'),
+        print (item[0]),
+        print (','),
+        print (item[1]),
+    print ('\n')
+    print ('NEW DIRECTIONS')
+    c = 1
+    for item in newdir:
+        print ('\n')
+        print (c),
+        print ('.'),
+        print (item),
+        c = c + 1
+
+
+
+            
+    
         
         
         
