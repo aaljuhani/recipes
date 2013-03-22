@@ -54,7 +54,7 @@ def scrap_recipe (url):
     cleanDescription = ''
     while (openB < len(description_spans)):
         openB = description_spans.find('<',openB+1,len(description_spans))
-        cleanDescription = cleanDescription+description_spans[closeB+1:openB]
+        cleanDescription = cleanDescription+description_spans[closeB+1:openB] + '::'
         if (openB == -1):
                break
         closeB = description_spans.find('>',openB+1,len(description_spans))
@@ -64,17 +64,24 @@ def scrap_recipe (url):
     print cleanDescription
     print "\n"
 
+    cleanDescription = cleanDescription.split('::, ::')
+    directions = []
+    for item in cleanDescription:
+        directions.append(item.replace('::',''))
+    
+    print directions
+    
     Ingredient = Ingredient.split(',')    
 
     Ingredients = []
     temp = []
     for word in Ingredient:
         if re.match(r'[\D-]*$', word):
-            temp.append(word)
+            temp.append(word.lower())
             Ingredients.append(temp)
             temp = []
         else:
-            temp.append(word)
+            temp.append(word.lower())
 
     for pair in Ingredients:
         if len(pair) < 2:
@@ -105,7 +112,7 @@ def scrap_recipe (url):
             
             
 '''
-    return Ingredients
+    return [Ingredients, directions]
     print Ingredients
     print "\n"
 

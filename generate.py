@@ -23,7 +23,9 @@ def findIngredient (str):
     return False
 
 def generateRecipe (url, instruction):
-    ingredients = scrap_recipe(url)
+    recipe = scrap_recipe(url)
+    ingredients = recipe[0]
+    translation = []
     newIngredients = []
     temp = []
     index = 0
@@ -34,6 +36,7 @@ def generateRecipe (url, instruction):
         if info:
             if info[0] == 'protein':
                 new = p.getSimilarIngredient(info[1], instruction, used)
+                translation.append([' meat', new])
             elif info[0] == 'grain':
                 new = g.getSimilarIngredient(info[1], instruction, used)
             elif info[0] == 'spice':
@@ -50,17 +53,28 @@ def generateRecipe (url, instruction):
             elif info[0] == 'flavor':
                 new = fl.getSimilarIngredient(info[1], instruction, used)
             '''
+            translation.append([item[1], new])
             temp.append(new)
             used.append(new)
         else:
             temp.append(item[1])
         newIngredients.append(temp)
         temp = []
+    directions = recipe[1]
+    newdir = []
+    temp = ''
+    for step in directions:
+        temp = step
+        for item in translation:
+            temp = temp.replace(item[0], ' ' + item[1])
+        newdir.append(temp)
     print 'OLD'
     print ingredients
     print '\n'
     print 'NEW'
     print newIngredients
+    print '\n'
+    print newdir
         
         
         
