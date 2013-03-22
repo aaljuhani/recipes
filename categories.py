@@ -86,12 +86,24 @@ category =[
         ['ground garlic'],
         ['ground ginger']],
 
-    ['vegetable',
-        ['onion'],
-        ['grean onions'],
-        ['carrot'],
+     ['vegetable',
+        ['bok choy'],
+        ['okra'],
+        ['lotus root'],
+        ['edamame'],
+  
+        ['cabbage'], # in case you want to switch to bok choy (asian)
+        ['pepper'],
+        ['spinach'],
         ['red bell pepper'],
-        ['peas']],
+        ['yam'],
+        ['beans'],
+        ['radish'],
+        ['potato'],
+        ['eggplant'],
+        ['mushroom'],
+     ],
+
 
     ['fruit',
         ['apple'],
