@@ -150,7 +150,7 @@ class grain:
                  'cornbread':{'healthy':False,'cuisine':['american'],'fancy':False},
                  'couscous':{'healthy':False,'cuisine':['african'],'fancy':False},
                  'crackers':{'healthy':False,'cuisine':['american'],'fancy':False},
-                 'noodles':{'healthy':False,'cuisine':['asian','fancy':False},
+                 'noodles':{'healthy':False,'cuisine':['asian'],'fancy':False},
                  'spaghetti':{'healthy':False,'cuisine':['italian'],'fancy':False},
                  'macaroni':{'healthy':False,'cuisine':['italian'],'fancy':False},
                  'white bread':{'healthy':False,'cuisine':['greek'],'fancy':False},
@@ -173,20 +173,10 @@ class grain:
             return self.ingredients[x]['healthy']
         elif instructions == 'fancy':
             return self.ingredients[x]['fancy']
-        elif instructions == 'asian':
-            return self.ingredients[x]['cuisine'] == 'Asia'
-        elif instructions == 'italian':
-            return self.ingredients[x]['cuisine'] == 'Italy'
-        elif instructions == 'greek':
-            return self.ingredients[x]['cuisine'] == 'Greek'
-        elif instructions == 'american':
-            return self.ingredients[x]['cuisine'] == 'America'
-        elif instructions == 'indian':
-            return self.ingredients[x]['cuisine'] == 'indian'
-        elif instructions == 'english':
-            return self.ingredients[x]['cuisine'] == 'english'
+        elif instructions in self.ingredients[x]['cuisine']
+            return True
         else:
-            return True   
+            return False   
         return self.ingredients[x]['healthy'] == self.ingredients[y]['healthy']
         
 
@@ -221,12 +211,7 @@ class spices:
                   
                  
                 'Saffron':{'cuisine':['iranian'],'fancy':False}, #doesnt originate from iran, but aside form that it bringsup a point that an ingredient can be common in multiple cuisines 
-                 
-
-                
-                 'salt':{'cuisine':'worldwide','fancy':False},
-                 'sugar':{'cuisine':'worldwide','fancy':False},
-                 'pepper':{'cuisine':'worldwide','fancy':False},}
+                 }
 
     #instructions is a list of steps involving the ingredient
     def getSimilarIngredient(self,ingredient,instructions, used):
@@ -247,39 +232,27 @@ class spices:
             return False
         if instructions == 'fancy':
             return self.ingredients[x]['fancy']
-        elif instructions == 'asian':
-            return self.ingredients[x]['cuisine'] == 'Asia'
-        elif instructions == 'italian':
-            return self.ingredients[x]['cuisine'] == 'Italy'
-        elif instructions == 'greek':
-            return self.ingredients[x]['cuisine'] == 'Greek'
-        elif instructions == 'american':
-            return self.ingredients[x]['cuisine'] == 'America'
-        elif instructions == 'indiann':
-            return self.ingredients[x]['cuisine'] == 'indian'
-        elif instructions == 'english':
-            return self.ingredients[x]['cuisine'] == 'english'
-        elif instructions == 'iranian':
-            return self.ingredients[x]['cuisine'] == 'Iran'
+        elif instructions in self.ingredients[x]['cuisine']
+            return True
         else:
-            return True   
+            return False   
         return self.ingredients[x]['cuisine'] == self.ingredients[y]['cuisine']
         
 
 
 class sauce:
-    ingredients={'curry sauce':{'cuisine':'indian','fancy':False},
+    ingredients={'curry sauce':{'cuisine':['indian'],'fancy':False},
                 
 
-                 'balsamic vinegar':{'cuisine':'Italy','fancy':False},
+                 'balsamic vinegar':{'cuisine':['italian'],'fancy':False},
                  
 
-                 'hoisin sauce':{'cuisine':'Asia','fancy':False},
-                 'soy sauce':{'cuisine':'Asia','fancy':False},
+                 'hoisin sauce':{'cuisine':['asian'],'fancy':False},
+                 'soy sauce':{'cuisine':['asian'],'fancy':False},
                  
-                'barbeque sauce':{'cuisine':'America','fancy':False},
+                'barbeque sauce':{'cuisine':['american'],'fancy':False},
                 
-                 'tomato sauce':{'cuisine':'worldwide','fancy':False}, #need to find a way to handle this
+                 'tomato sauce':{'cuisine':['italian','american'],'fancy':False}, #need to find a way to handle this
                 }
 
     #instructions is a list of steps involving the ingredient
@@ -297,22 +270,10 @@ class sauce:
             return False
         if instructions == 'fancy':
             return self.ingredients[x]['fancy']
-        elif instructions == 'asian':
-            return self.ingredients[x]['cuisine'] == 'Asia'
-        elif instructions == 'italian':
-            return self.ingredients[x]['cuisine'] == 'Italy'
-        elif instructions == 'greek':
-            return self.ingredients[x]['cuisine'] == 'Greek'
-        elif instructions == 'american':
-            return self.ingredients[x]['cuisine'] == 'America'
-        elif instructions == 'indiann':
-            return self.ingredients[x]['cuisine'] == 'indian'
-        elif instructions == 'english':
-            return self.ingredients[x]['cuisine'] == 'english'
-        elif instructions == 'iranian':
-            return self.ingredients[x]['cuisine'] == 'Iran'
+        elif instructions in self.ingredients[x]['cuisine']:
+            return True
         else:
-            return True 
+            return False 
         return self.ingredients[x]['cuisine'] == self.ingredients[y]['cuisine']
         
 
