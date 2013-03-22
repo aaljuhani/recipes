@@ -83,9 +83,6 @@ category =[
         ['nigella'],
         ['turmeric'],
         ['saffron'],
-        ['salt'],
-        ['sugar'],
-        ['pepper'],
         ['ground garlic']
         ['ground ginger']],
 
@@ -142,22 +139,22 @@ class protein:
 
 
 class grain:
-    ingredients={'brown rice':{'healthy':True,'cuisine':'Asia','fancy':False},
-                 'oats':{'healthy':True,'cuisine':'England','fancy':False},
-                 'popcorn':{'healthy':True,'cuisine':'America','fancy':False},
-                 'oatmeal':{'healthy':True,'cuisine':'England','fancy':False},
-                 'whole wheat pasta':{'healthy':True,'cuisine':'Italy','fancy':False},
-                 'wild Rice':{'healthy':True,'cuisine':'India','fancy':False},
-                 'bulgur':{'healthy':True,'cuisine':'Africa','fancy':False},
+    ingredients={'brown rice':{'healthy':True,'cuisine':['asian'],'fancy':False},
+                 'oats':{'healthy':True,'cuisine':['english'],'fancy':False},
+                 'popcorn':{'healthy':True,'cuisine':['america'],'fancy':False},
+                 'oatmeal':{'healthy':True,'cuisine':['english'],'fancy':False},
+                 'whole wheat pasta':{'healthy':True,'cuisine':['italian'],'fancy':False},
+                 'wild Rice':{'healthy':True,'cuisine':['indian'],'fancy':False},
+                 'bulgur':{'healthy':True,'cuisine':['african'],'fancy':False},
 
-                 'cornbread':{'healthy':False,'cuisine':'America','fancy':False},
-                 'couscous':{'healthy':False,'cuisine':'Africa','fancy':False},
-                 'crackers':{'healthy':False,'cuisine':'America','fancy':False},
-                 'noodles':{'healthy':False,'cuisine':'Asia','fancy':False},
-                 'spaghetti':{'healthy':False,'cuisine':'Italy','fancy':False},
-                 'macaroni':{'healthy':False,'cuisine':'Italy','fancy':False},
-                 'white bread':{'healthy':False,'cuisine':'Greek','fancy':False},
-                 'white rice':{'healthy':False,'cuisine':'America','fancy':False},}
+                 'cornbread':{'healthy':False,'cuisine':['american'],'fancy':False},
+                 'couscous':{'healthy':False,'cuisine':['african'],'fancy':False},
+                 'crackers':{'healthy':False,'cuisine':['american'],'fancy':False},
+                 'noodles':{'healthy':False,'cuisine':['asian','fancy':False},
+                 'spaghetti':{'healthy':False,'cuisine':['italian'],'fancy':False},
+                 'macaroni':{'healthy':False,'cuisine':['italian'],'fancy':False},
+                 'white bread':{'healthy':False,'cuisine':['greek'],'fancy':False},
+                 'white rice':{'healthy':False,'cuisine':['american'],'fancy':False},}
 
     #instructions is a list of steps involving the ingredient
     def getSimilarIngredient(self,ingredient,instructions, used):
@@ -185,9 +182,9 @@ class grain:
         elif instructions == 'american':
             return self.ingredients[x]['cuisine'] == 'America'
         elif instructions == 'indian':
-            return self.ingredients[x]['cuisine'] == 'India'
+            return self.ingredients[x]['cuisine'] == 'indian'
         elif instructions == 'english':
-            return self.ingredients[x]['cuisine'] == 'England'
+            return self.ingredients[x]['cuisine'] == 'english'
         else:
             return True   
         return self.ingredients[x]['healthy'] == self.ingredients[y]['healthy']
@@ -196,34 +193,34 @@ class grain:
 
 
 class spices:
-    ingredients={'cumin seeds':{'cuisine':'India','fancy':False},
-                 'cumin':{'cuisine':'India','fancy':False},
-                 'turmeric':{'cuisine':'India','fancy':False},
-                 'soriander seeds':{'cuisine':'India','fancy':False},
-                 'fennel seeds':{'cuisine':'India','fancy':False},
-                 'fenugreek seeds':{'cuisine':'India','fancy':False},
-                 'curry':{'cuisine':'India','fancy':False},
-                 'ginger':{'cuisine':'India','fancy':False},
+    ingredients={'cumin seeds':{'cuisine':['indian'],'fancy':False},
+                 'cumin':{'cuisine':['indian'],'fancy':False},
+                 'turmeric':{'cuisine':['indian'],'fancy':False},
+                 'soriander seeds':{'cuisine':['indian'],'fancy':False},
+                 'fennel seeds':{'cuisine':['indian'],'fancy':False},
+                 'fenugreek seeds':{'cuisine':['indian'],'fancy':False},
+                 'curry':{'cuisine':['indian'],'fancy':False},
+                 'ginger':{'cuisine':['indian'],'fancy':False},
                  
 
-                 'chamomile':{'cuisine':'Italy','fancy':False},
-                 'lemon pepper':{'cuisine':'Italy','fancy':False},
-                 'oregano':{'cuisine':'Italy','fancy':False},
-                 'sun-dried tomatoes':{'cuisine':'Italy','fancy':False},
-                 'bay leaves':{'cuisine':'Italy','fancy':False},
-                 'basil leaves':{'cuisine':'Italy','fancy':False},
-                 'anise':{'cuisine':'Italy','fancy':False},
-                 'coriander':{'cuisine':'Italy','fancy':False},
-                 'cloves':{'cuisine':'Italy','fancy':False},
+                 'chamomile':{'cuisine':['italian'],'fancy':False},
+                 'lemon pepper':{'cuisine':['italian'],'fancy':False},
+                 'oregano':{'cuisine':['italian'],'fancy':False},
+                 'sun-dried tomatoes':{'cuisine':['italian'],'fancy':False},
+                 'bay leaves':{'cuisine':['italian'],'fancy':False},
+                 'basil leaves':{'cuisine':['italian'],'fancy':False},
+                 'anise':{'cuisine':['italian'],'fancy':False},
+                 'coriander':{'cuisine':['italian'],'fancy':False},
+                 'cloves':{'cuisine':['italian'],'fancy':False},
 
-                 'Cinnamon':{'cuisine':'Asia','fancy':False},
-                 'Thai Basil':{'cuisine':'Asia','fancy':False},
-                 'Kaffir Lime Leaves':{'cuisine':'Asia','fancy':False},
-                 'Nigella':{'cuisine':'Asia','fancy':False},
-                 'Turmeric':{'cuisine':'Asia','fancy':False},
+                 'Cinnamon':{'cuisine':['asian'],'fancy':False},
+                 'Thai Basil':{'cuisine':['asian'],'fancy':False},
+                 'Kaffir Lime Leaves':{'cuisine':['asian'],'fancy':False},
+                 'Nigella':{'cuisine':['asian'],'fancy':False},
+                 'Turmeric':{'cuisine':['asian'],'fancy':False},
                   
                  
-                'Saffron':{'cuisine':'Iran','fancy':False}, #doesnt originate from iran, but aside form that it bringsup a point that an ingredient can be common in multiple cuisines 
+                'Saffron':{'cuisine':['iranian'],'fancy':False}, #doesnt originate from iran, but aside form that it bringsup a point that an ingredient can be common in multiple cuisines 
                  
 
                 
@@ -258,10 +255,10 @@ class spices:
             return self.ingredients[x]['cuisine'] == 'Greek'
         elif instructions == 'american':
             return self.ingredients[x]['cuisine'] == 'America'
-        elif instructions == 'indian':
-            return self.ingredients[x]['cuisine'] == 'India'
+        elif instructions == 'indiann':
+            return self.ingredients[x]['cuisine'] == 'indian'
         elif instructions == 'english':
-            return self.ingredients[x]['cuisine'] == 'England'
+            return self.ingredients[x]['cuisine'] == 'english'
         elif instructions == 'iranian':
             return self.ingredients[x]['cuisine'] == 'Iran'
         else:
@@ -271,7 +268,7 @@ class spices:
 
 
 class sauce:
-    ingredients={'curry sauce':{'cuisine':'India','fancy':False},
+    ingredients={'curry sauce':{'cuisine':'indian','fancy':False},
                 
 
                  'balsamic vinegar':{'cuisine':'Italy','fancy':False},
@@ -308,10 +305,10 @@ class sauce:
             return self.ingredients[x]['cuisine'] == 'Greek'
         elif instructions == 'american':
             return self.ingredients[x]['cuisine'] == 'America'
-        elif instructions == 'indian':
-            return self.ingredients[x]['cuisine'] == 'India'
+        elif instructions == 'indiann':
+            return self.ingredients[x]['cuisine'] == 'indian'
         elif instructions == 'english':
-            return self.ingredients[x]['cuisine'] == 'England'
+            return self.ingredients[x]['cuisine'] == 'english'
         elif instructions == 'iranian':
             return self.ingredients[x]['cuisine'] == 'Iran'
         else:
