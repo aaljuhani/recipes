@@ -173,7 +173,7 @@ class grain:
             return self.ingredients[x]['healthy']
         elif instructions == 'fancy':
             return self.ingredients[x]['fancy']
-        elif instructions in self.ingredients[x]['cuisine']
+        elif instructions in self.ingredients[x]['cuisine']:
             return True
         else:
             return False   
@@ -232,7 +232,7 @@ class spices:
             return False
         if instructions == 'fancy':
             return self.ingredients[x]['fancy']
-        elif instructions in self.ingredients[x]['cuisine']
+        elif instructions in self.ingredients[x]['cuisine']:
             return True
         else:
             return False   
